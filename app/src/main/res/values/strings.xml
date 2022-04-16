@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Practica 2</string>
+    <string name="app_name">Práctica 2</string>
+    <string name="button_ej1">Ejercicio 1</string>
+    <string name="button_ej2">Ejercicio 2</string>
 </resources>
