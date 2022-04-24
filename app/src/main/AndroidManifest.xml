@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Practica2">
         <activity
-            android:name=".Ejercicio1"
-            android:label="Ejercicio 1"
+            android:name=".Ejercicio2"
             android:exported="false" />
+        <activity
+            android:name=".Ejercicio1"
+            android:exported="false"
+            android:label="Ejercicio 1" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
