@@ -2,12 +2,14 @@ package com.grupo4.practica2
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import org.w3c.dom.Text
 
 class Ejercicio1 : AppCompatActivity() {
     private var intentos = 5
@@ -27,25 +29,43 @@ class Ejercicio1 : AppCompatActivity() {
         val numeroAleatorio = (1..5).random()
         val editTextNumeroUsuario = findViewById<EditText>(R.id.input_numero)
         val numeroUsuario = editTextNumeroUsuario.text.toString().toIntOrNull() ?: 0
-        if (numeroAleatorio == numeroUsuario) {
-            puntajeActual += 10
-            actualizarPuntajeActual()
-            intentos = 5
+        val textViewInstrucciones = findViewById<TextView>(R.id.textViewInstrucciones)
+        val textViewIntentos = findViewById<TextView>(R.id.textViewIntentos)
+        if (numeroUsuario !in 5 downTo 1) {
+            Toast.makeText(this,"El número ingresado debe estar entre 1 y 5.",Toast.LENGTH_SHORT).show()
         } else {
-            intentos--
-            if (intentos == 0) {
-                val puntajeMaximo = sharedPreferences.getInt("puntajeMaximo", 0)
-                if (puntajeActual > puntajeMaximo) {
-                    val edit = sharedPreferences.edit()
-                    edit.putInt("puntajeMaximo", puntajeActual)
-                    edit.apply()
-                    actualizarPuntajeActual()
-                    findViewById<TextView>(R.id.textViewPuntajeMaximo).text = puntajeActual.toString()
-                    Toast.makeText(this,"¡Nuevo puntaje máximo!",Toast.LENGTH_SHORT).show()
-                }
-                puntajeActual = 0
+            if (numeroAleatorio == numeroUsuario) {
+                puntajeActual += 10
                 actualizarPuntajeActual()
                 intentos = 5
+                textViewInstrucciones.text = "¡Acertaste!"
+                textViewIntentos.text = "Te quedan $intentos intentos."
+            } else {
+                intentos--
+                if (intentos != 1) {
+                    textViewIntentos.text = "Te quedan $intentos intentos."
+                } else {
+                    textViewIntentos.text = "Te queda 1 intento."
+                }
+                textViewIntentos.visibility = View.VISIBLE
+                textViewInstrucciones.text = "No acertaste, el número era $numeroAleatorio"
+                if (intentos == 0) {
+                    val puntajeMaximo = sharedPreferences.getInt("puntajeMaximo", 0)
+                    if (puntajeActual > puntajeMaximo) {
+                        val edit = sharedPreferences.edit()
+                        edit.putInt("puntajeMaximo", puntajeActual)
+                        edit.apply()
+                        actualizarPuntajeActual()
+                        findViewById<TextView>(R.id.textViewPuntajeMaximo).text = puntajeActual.toString()
+                        Toast.makeText(this, "¡Nuevo puntaje máximo!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Fin del juego.",Toast.LENGTH_SHORT).show()
+                    }
+                    puntajeActual = 0
+                    actualizarPuntajeActual()
+                    intentos = 5
+                    textViewIntentos.visibility = View.INVISIBLE
+                }
             }
         }
         editTextNumeroUsuario.setText("")
