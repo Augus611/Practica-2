@@ -4,7 +4,6 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import androidx.core.content.contentValuesOf
 
 class miSQLiteHelper(context: Context):SQLiteOpenHelper(context, "ciudades.db", null, 1) {
 
@@ -30,6 +29,16 @@ class miSQLiteHelper(context: Context):SQLiteOpenHelper(context, "ciudades.db", 
         val db = this.writableDatabase
         db.insert("ciudades",null,datos)
         db.close()
+    }
+
+    fun searchCiudad(nombre: String): List<String>? {
+        val db = this.readableDatabase
+        val fila = db.rawQuery("SELECT nombre, pais, poblacion FROM ciudades where nombre = ?", arrayOf(nombre))
+        return if (fila.moveToFirst()) {
+            listOf(fila.getString(0), fila.getString(1), fila.getString(2))
+        } else {
+            null
+        }
     }
 
 }

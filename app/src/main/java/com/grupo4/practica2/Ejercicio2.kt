@@ -29,22 +29,26 @@ class Ejercicio2 : AppCompatActivity() {
         val ciudad = inputCiudad.text.toString()
         val poblacion = inputPoblacion.text.toString().toInt()
 
-        if(pais.isNotBlank() && ciudad.isNotBlank()){
-            ciudadesDBHelper.addDato(ciudad, pais, poblacion)
+        if (ciudadesDBHelper.searchCiudad(ciudad) == null) {
+            if (pais.isNotBlank() && ciudad.isNotBlank() && poblacion.toString().isNotBlank()) {
+                ciudadesDBHelper.addDato(ciudad, pais, poblacion)
 
-            inputPais.text.clear()
-            inputCiudad.text.clear()
-            inputPoblacion.text.clear()
+                inputPais.text.clear()
+                inputCiudad.text.clear()
+                inputPoblacion.text.clear()
 
-            Toast.makeText(this, "Guardado", Toast.LENGTH_SHORT).show()
-            
-        }else{
-            Toast.makeText(this, "Complete los datos", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Guardado", Toast.LENGTH_SHORT).show()
+
+            } else {
+                Toast.makeText(this, "Complete los datos", Toast.LENGTH_LONG).show()
+            }
+        } else {
+            Toast.makeText(this, "La ciudad ingresada ya existe.", Toast.LENGTH_SHORT).show()
         }
     }
 
     fun buscarCiudad(view: View){
-        //No funciona
+
         val inputBusqueda= findViewById<EditText>(R.id.inputBusqueda)
 
         val inputPais = findViewById<EditText>(R.id.inputPais)
@@ -54,16 +58,16 @@ class Ejercicio2 : AppCompatActivity() {
         val busqueda = inputBusqueda.text.toString()
 
         if(busqueda.isNotBlank()){
-            val db:SQLiteDatabase = ciudadesDBHelper.readableDatabase
-
-            val cursor = db.rawQuery("SELECT * FROM ciudades WHERE nombre = busqueda", null)
-
-            if(cursor.moveToFirst()){
-                do{
-                    inputCiudad.text.append(cursor.getString(1).toString())
-                    inputPais.text.append(cursor.getString(2).toString())
-                    inputPoblacion.text.append(cursor.getInt(3).toString())
-                }while (cursor.moveToNext())
+            val resultado = ciudadesDBHelper.searchCiudad(busqueda)
+            if (resultado != null) {
+                inputPais.text.clear()
+                inputPais.text.append(resultado.elementAt(1))
+                inputCiudad.text.clear()
+                inputCiudad.text.append(resultado.elementAt(0))
+                inputPoblacion.text.clear()
+                inputPoblacion.text.append(resultado.elementAt(2))
+            } else {
+                Toast.makeText(this, "No se ha encontrado la ciudad ingresada.", Toast.LENGTH_SHORT).show()
             }
         }
 
