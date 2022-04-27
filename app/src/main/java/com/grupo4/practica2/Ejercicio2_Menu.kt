@@ -20,4 +20,9 @@ class Ejercicio2_Menu : AppCompatActivity() {
         val intent = Intent(this, ejercicio2_Consulta::class.java)
         startActivity(intent)
     }
+
+    fun ejercicio2_Pais (view: View) {
+        val intent = Intent(this, ejercicio2_EliminarPais::class.java)
+        startActivity(intent)
+    }
 }

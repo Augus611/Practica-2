@@ -61,6 +61,7 @@
                 android:id="@+id/button_EliminarxPais"
                 android:layout_width="167dp"
                 android:layout_height="54dp"
+                android:onClick="ejercicio2_Pais"
                 android:text="Eliminar Pais"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

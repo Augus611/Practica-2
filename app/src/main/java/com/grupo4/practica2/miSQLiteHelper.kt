@@ -41,4 +41,40 @@ class miSQLiteHelper(context: Context):SQLiteOpenHelper(context, "ciudades.db", 
         }
     }
 
+    fun EliminarCiudad(nombre: String): Int{
+
+        val arg = arrayOf(nombre.toString())
+
+        val db = this.writableDatabase
+        val borradosC = db.delete("ciudades","nombre = ?", arg)
+        db.close()
+
+        return borradosC
+
+    }
+
+    fun EliminarPais(pais: String): Int{
+
+        val arg = arrayOf(pais.toString())
+
+        val db = this.writableDatabase
+        val borradosP = db.delete("ciudades","pais = ?", arg)
+        db.close()
+
+        return borradosP
+
+    }
+
+
+    fun ActualizarDato(nombre: String, poblacion: Int){
+
+        val arg = arrayOf(nombre.toString())
+
+        val datos = ContentValues()
+        datos.put("poblacion", poblacion)
+
+        val db = this.writableDatabase
+        db.update("ciudades", datos,"nombre = ?", arg )
+        db.close()
+    }
 }

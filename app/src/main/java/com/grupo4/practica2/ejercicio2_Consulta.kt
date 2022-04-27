@@ -42,4 +42,44 @@ class ejercicio2_Consulta : AppCompatActivity() {
         }
 
     }
+
+    fun EliminarCiudad(view: View){
+
+        val inputCiudad = findViewById<EditText>(R.id.inputCiudad)
+        val ciudadParametro = inputCiudad.text.toString()
+
+        var cantidadeliminados = 0
+
+        if(ciudadParametro.isNotBlank()){
+
+            cantidadeliminados= ciudadesDBHelper.EliminarCiudad(ciudadParametro)
+
+            if(cantidadeliminados > 0){
+                Toast.makeText(this, "Fue eliminada exitosamente", Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this, "No se ha encontrado la ciudad ingresada.", Toast.LENGTH_SHORT).show()
+            }
+
+        }else{
+            Toast.makeText(this, "No hay ciudad ingresada.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun ModificarPoblacion(view: View){
+
+        val inputCiudad = findViewById<EditText>(R.id.inputCiudad)
+        val inputPoblacion = findViewById<EditText>(R.id.inputPoblacion)
+        val ciudadParametro = inputCiudad.text.toString()
+        val poblacion = inputPoblacion.text.toString().toInt()
+
+        if(ciudadParametro.isNotBlank() && poblacion.toString().isNotBlank()){
+            ciudadesDBHelper.ActualizarDato(ciudadParametro, poblacion.toInt())
+            Toast.makeText(this, "Fue actualizada exitosamente", Toast.LENGTH_LONG).show()
+        }else{
+            Toast.makeText(this, "No se pudo actualizar exitosamente", Toast.LENGTH_LONG).show()
+        }
+
+    }
+
+
 }
