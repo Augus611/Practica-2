@@ -5,17 +5,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 
-class MainActivity : AppCompatActivity() {
+class Ejercicio2_Menu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_ejercicio2_menu)
     }
-    fun ejercicio1 (view: View) {
-        val intent = Intent(this, Ejercicio1::class.java)
+
+    fun ejercicio2 (view: View) {
+        val intent = Intent(this, Ejercicio2::class.java)
         startActivity(intent)
     }
-    fun ejercicio2 (view: View) {
-        val intent = Intent(this, Ejercicio2_Menu::class.java)
+
+    fun ejercicio2_consulta (view: View) {
+        val intent = Intent(this, ejercicio2_Consulta::class.java)
         startActivity(intent)
     }
 }
