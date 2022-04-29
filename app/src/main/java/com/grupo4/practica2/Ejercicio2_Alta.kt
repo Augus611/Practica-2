@@ -1,20 +1,18 @@
 package com.grupo4.practica2
 
-import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 
-class Ejercicio2 : AppCompatActivity() {
+class Ejercicio2_Alta : AppCompatActivity() {
 
     lateinit var ciudadesDBHelper: miSQLiteHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ejercicio2)
+        setContentView(R.layout.activity_ejercicio2_alta)
 
         ciudadesDBHelper = miSQLiteHelper(this)
 

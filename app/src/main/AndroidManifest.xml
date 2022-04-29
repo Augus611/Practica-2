@@ -15,10 +15,25 @@
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".Ejercicio2"
+            android:name=".Ejercicio2_Menu"
             android:label="Ejercicio 2"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Ejercicio2_Alta"
+            android:label="Alta"
+            android:exported="false"
+            android:parentActivityName=".Ejercicio2_Menu" />
+        <activity
+            android:name=".Ejercicio2_Consulta"
+            android:label="Consulta"
+            android:exported="false"
+            android:parentActivityName=".Ejercicio2_Menu" />
+        <activity
+            android:name=".Ejercicio2_EliminarPais"
+            android:label="Eliminar País"
+            android:exported="false"
+            android:parentActivityName=".Ejercicio2_Menu" />
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.grupo4.practica2.MainActivity" />

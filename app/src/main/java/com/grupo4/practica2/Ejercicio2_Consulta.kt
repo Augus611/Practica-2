@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 
-class ejercicio2_Consulta : AppCompatActivity() {
+class Ejercicio2_Consulta : AppCompatActivity() {
 
     lateinit var ciudadesDBHelper: miSQLiteHelper
 

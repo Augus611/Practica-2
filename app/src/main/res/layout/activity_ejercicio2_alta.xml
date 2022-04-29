@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Ejercicio2">
+    tools:context=".Ejercicio2_Alta">
 
     <TextView
         android:id="@+id/label_TituloAlta"
