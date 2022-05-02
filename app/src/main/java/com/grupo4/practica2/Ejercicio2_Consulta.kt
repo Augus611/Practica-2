@@ -70,13 +70,13 @@ class Ejercicio2_Consulta : AppCompatActivity() {
         val inputCiudad = findViewById<EditText>(R.id.inputCiudad)
         val inputPoblacion = findViewById<EditText>(R.id.inputPoblacion)
         val ciudadParametro = inputCiudad.text.toString()
-        val poblacion = inputPoblacion.text.toString().toInt()
+        val poblacion = inputPoblacion.text.toString().toIntOrNull() ?: -1
 
-        if(ciudadParametro.isNotBlank() && poblacion.toString().isNotBlank()){
-            ciudadesDBHelper.ActualizarDato(ciudadParametro, poblacion.toInt())
+        if(ciudadParametro.isNotBlank() && poblacion != -1){
+            ciudadesDBHelper.ActualizarDato(ciudadParametro, poblacion)
             Toast.makeText(this, "Fue actualizada exitosamente", Toast.LENGTH_LONG).show()
         }else{
-            Toast.makeText(this, "No se pudo actualizar exitosamente", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "No se pudo actualizar", Toast.LENGTH_LONG).show()
         }
 
     }

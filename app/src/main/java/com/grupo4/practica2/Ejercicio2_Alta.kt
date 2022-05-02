@@ -25,10 +25,10 @@ class Ejercicio2_Alta : AppCompatActivity() {
 
         val pais = inputPais.text.toString()
         val ciudad = inputCiudad.text.toString()
-        val poblacion = inputPoblacion.text.toString().toInt()
+        val poblacion = inputPoblacion.text.toString().toIntOrNull() ?: -1
 
         if (ciudadesDBHelper.searchCiudad(ciudad) == null) {
-            if (pais.isNotBlank() && ciudad.isNotBlank() && poblacion.toString().isNotBlank()) {
+            if (pais.isNotBlank() && ciudad.isNotBlank() && poblacion != -1) {
                 ciudadesDBHelper.addDato(ciudad, pais, poblacion)
 
                 inputPais.text.clear()
