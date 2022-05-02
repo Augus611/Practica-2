@@ -35,10 +35,10 @@ class Ejercicio2_Alta : AppCompatActivity() {
                 inputCiudad.text.clear()
                 inputPoblacion.text.clear()
 
-                Toast.makeText(this, "Guardado", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Guardado.", Toast.LENGTH_SHORT).show()
 
             } else {
-                Toast.makeText(this, "Complete los datos", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "No puede haber campos vacíos.", Toast.LENGTH_LONG).show()
             }
         } else {
             Toast.makeText(this, "La ciudad ingresada ya existe.", Toast.LENGTH_SHORT).show()

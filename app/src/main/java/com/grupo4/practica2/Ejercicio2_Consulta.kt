@@ -55,13 +55,13 @@ class Ejercicio2_Consulta : AppCompatActivity() {
             cantidadeliminados= ciudadesDBHelper.EliminarCiudad(ciudadParametro)
 
             if(cantidadeliminados > 0){
-                Toast.makeText(this, "Fue eliminada exitosamente", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Ciudad eliminada exitosamente.", Toast.LENGTH_LONG).show()
             }else{
                 Toast.makeText(this, "No se ha encontrado la ciudad ingresada.", Toast.LENGTH_SHORT).show()
             }
 
         }else{
-            Toast.makeText(this, "No hay ciudad ingresada.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Se debe ingresar una ciudad.", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -74,9 +74,9 @@ class Ejercicio2_Consulta : AppCompatActivity() {
 
         if(ciudadParametro.isNotBlank() && poblacion != -1){
             ciudadesDBHelper.ActualizarDato(ciudadParametro, poblacion)
-            Toast.makeText(this, "Fue actualizada exitosamente", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Población actualizada exitosamente.", Toast.LENGTH_LONG).show()
         }else{
-            Toast.makeText(this, "No se pudo actualizar", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "No se pudo actualizar.", Toast.LENGTH_LONG).show()
         }
 
     }

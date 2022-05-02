@@ -29,13 +29,13 @@ class Ejercicio2_EliminarPais : AppCompatActivity() {
             cantidadeliminados= ciudadesDBHelper.EliminarPais(PaisParametro)
 
             if(cantidadeliminados > 0){
-                Toast.makeText(this, "Fue eliminada exitosamente", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "País eliminado exitosamente.", Toast.LENGTH_LONG).show()
             }else{
-                Toast.makeText(this, "No se ha encontrado la ciudad ingresada.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "No se ha encontrado el país ingresado.", Toast.LENGTH_SHORT).show()
             }
 
         }else{
-            Toast.makeText(this, "No hay ciudad ingresada.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Se debe ingresar un país.", Toast.LENGTH_SHORT).show()
         }
     }
 }
