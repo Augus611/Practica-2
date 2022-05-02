@@ -48,12 +48,13 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.04" />
 
-            <EditText
-                android:id="@+id/inputPais"
+            <AutoCompleteTextView
+                android:id="@+id/inputPaisAlta"
                 android:layout_width="219dp"
                 android:layout_height="48dp"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textCapWords"
+                android:completionThreshold="2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.108"
@@ -72,15 +73,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.069"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputPais"
+                app:layout_constraintTop_toBottomOf="@+id/inputPaisAlta"
                 app:layout_constraintVertical_bias="0.037" />
 
             <EditText
-                android:id="@+id/inputCiudad"
+                android:id="@+id/inputCiudadAlta"
                 android:layout_width="219dp"
                 android:layout_height="48dp"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textCapWords"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.108"
@@ -99,11 +100,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.069"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputCiudad"
+                app:layout_constraintTop_toBottomOf="@+id/inputCiudadAlta"
                 app:layout_constraintVertical_bias="0.082" />
 
             <EditText
-                android:id="@+id/inputPoblacion"
+                android:id="@+id/inputPoblacionAlta"
                 android:layout_width="219dp"
                 android:layout_height="48dp"
                 android:ems="10"
@@ -124,7 +125,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputPoblacion"
+                app:layout_constraintTop_toBottomOf="@+id/inputPoblacionAlta"
                 app:layout_constraintVertical_bias="0.364" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

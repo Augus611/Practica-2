@@ -95,7 +95,7 @@
                 app:layout_constraintVertical_bias="0.04" />
 
             <EditText
-                android:id="@+id/inputPais"
+                android:id="@+id/inputPaisConsulta"
                 android:layout_width="219dp"
                 android:layout_height="48dp"
                 android:ems="10"
@@ -119,11 +119,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.069"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputPais"
+                app:layout_constraintTop_toBottomOf="@+id/inputPaisConsulta"
                 app:layout_constraintVertical_bias="0.037" />
 
             <EditText
-                android:id="@+id/inputCiudad"
+                android:id="@+id/inputCiudadConsulta"
                 android:layout_width="219dp"
                 android:layout_height="48dp"
                 android:ems="10"
@@ -147,11 +147,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.069"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputCiudad"
+                app:layout_constraintTop_toBottomOf="@+id/inputCiudadConsulta"
                 app:layout_constraintVertical_bias="0.082" />
 
             <EditText
-                android:id="@+id/inputPoblacion"
+                android:id="@+id/inputPoblacionConsulta"
                 android:layout_width="219dp"
                 android:layout_height="48dp"
                 android:ems="10"
@@ -175,7 +175,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.067"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputPoblacion"
+                app:layout_constraintTop_toBottomOf="@+id/inputPoblacionConsulta"
                 app:layout_constraintVertical_bias="0.186" />
 
             <Button
@@ -191,7 +191,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.938"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputPoblacion"
+                app:layout_constraintTop_toBottomOf="@+id/inputPoblacionConsulta"
                 app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

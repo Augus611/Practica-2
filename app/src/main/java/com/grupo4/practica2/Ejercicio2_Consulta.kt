@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 
 class Ejercicio2_Consulta : AppCompatActivity() {
 
@@ -21,9 +22,9 @@ class Ejercicio2_Consulta : AppCompatActivity() {
 
         val inputBusqueda= findViewById<EditText>(R.id.inputBusqueda)
 
-        val inputPais = findViewById<EditText>(R.id.inputPais)
-        val inputCiudad = findViewById<EditText>(R.id.inputCiudad)
-        val inputPoblacion = findViewById<EditText>(R.id.inputPoblacion)
+        val inputPais = findViewById<EditText>(R.id.inputPaisConsulta)
+        val inputCiudad = findViewById<EditText>(R.id.inputCiudadConsulta)
+        val inputPoblacion = findViewById<EditText>(R.id.inputPoblacionConsulta)
 
         val busqueda = inputBusqueda.text.toString()
 
@@ -45,30 +46,41 @@ class Ejercicio2_Consulta : AppCompatActivity() {
 
     fun EliminarCiudad(view: View){
 
-        val inputCiudad = findViewById<EditText>(R.id.inputCiudad)
+        val inputCiudad = findViewById<EditText>(R.id.inputBusqueda)
         val ciudadParametro = inputCiudad.text.toString()
 
-        var cantidadeliminados = 0
-
-        if(ciudadParametro.isNotBlank()){
-
-            cantidadeliminados= ciudadesDBHelper.EliminarCiudad(ciudadParametro)
-
-            if(cantidadeliminados > 0){
-                Toast.makeText(this, "Ciudad eliminada exitosamente.", Toast.LENGTH_LONG).show()
-            }else{
+        when {
+            ciudadesDBHelper.searchCiudad(ciudadParametro) != null -> {
+                val builder = AlertDialog.Builder(this)
+                builder.setMessage("¿Seguro que querés eliminar $ciudadParametro?")
+                    .setCancelable(false)
+                    .setPositiveButton("Sí") { _, _ ->
+                        ciudadesDBHelper.EliminarCiudad(ciudadParametro)
+                        Toast.makeText(this, "Ciudad eliminada exitosamente.", Toast.LENGTH_LONG).show()
+                        inputCiudad.text.clear()
+                        findViewById<EditText>(R.id.inputPaisConsulta).text.clear()
+                        findViewById<EditText>(R.id.inputCiudadConsulta).text.clear()
+                        findViewById<EditText>(R.id.inputPoblacionConsulta).text.clear()
+                    }
+                    .setNegativeButton("No") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    .show()
+            }
+            ciudadParametro.isBlank() -> {
+                Toast.makeText(this, "Se debe ingresar una ciudad.", Toast.LENGTH_SHORT).show()
+            }
+            ciudadesDBHelper.searchCiudad(ciudadParametro) == null -> {
                 Toast.makeText(this, "No se ha encontrado la ciudad ingresada.", Toast.LENGTH_SHORT).show()
             }
 
-        }else{
-            Toast.makeText(this, "Se debe ingresar una ciudad.", Toast.LENGTH_SHORT).show()
         }
     }
 
     fun ModificarPoblacion(view: View){
 
-        val inputCiudad = findViewById<EditText>(R.id.inputCiudad)
-        val inputPoblacion = findViewById<EditText>(R.id.inputPoblacion)
+        val inputCiudad = findViewById<EditText>(R.id.inputCiudadConsulta)
+        val inputPoblacion = findViewById<EditText>(R.id.inputPoblacionConsulta)
         val ciudadParametro = inputCiudad.text.toString()
         val poblacion = inputPoblacion.text.toString().toIntOrNull() ?: -1
 

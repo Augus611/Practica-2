@@ -3,6 +3,8 @@ package com.grupo4.practica2
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import android.widget.Toast
 
@@ -15,14 +17,15 @@ class Ejercicio2_Alta : AppCompatActivity() {
         setContentView(R.layout.activity_ejercicio2_alta)
 
         ciudadesDBHelper = miSQLiteHelper(this)
-
+        val inputPais = findViewById<AutoCompleteTextView>(R.id.inputPaisAlta)
+        val paises = ciudadesDBHelper.devolverPaises()
+        ArrayAdapter(this, android.R.layout.simple_list_item_1, paises).also { adapter -> inputPais.setAdapter(adapter)}
     }
 
     fun crearCiudad(view: View){
-        val inputPais = findViewById<EditText>(R.id.inputPais)
-        val inputCiudad = findViewById<EditText>(R.id.inputCiudad)
-        val inputPoblacion = findViewById<EditText>(R.id.inputPoblacion)
-
+        val inputCiudad = findViewById<EditText>(R.id.inputCiudadAlta)
+        val inputPoblacion = findViewById<EditText>(R.id.inputPoblacionAlta)
+        val inputPais = findViewById<AutoCompleteTextView>(R.id.inputPaisAlta)
         val pais = inputPais.text.toString()
         val ciudad = inputCiudad.text.toString()
         val poblacion = inputPoblacion.text.toString().toIntOrNull() ?: -1
