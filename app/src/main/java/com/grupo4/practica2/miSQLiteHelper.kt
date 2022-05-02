@@ -43,7 +43,7 @@ class miSQLiteHelper(context: Context):SQLiteOpenHelper(context, "ciudades.db", 
 
     fun EliminarCiudad(nombre: String): Int{
 
-        val arg = arrayOf(nombre.toString())
+        val arg = arrayOf(nombre)
 
         val db = this.writableDatabase
         val borradosC = db.delete("ciudades","nombre = ?", arg)
@@ -53,9 +53,17 @@ class miSQLiteHelper(context: Context):SQLiteOpenHelper(context, "ciudades.db", 
 
     }
 
+    fun existePais(nombre : String): Boolean{
+
+        val arg = arrayOf(nombre)
+        val db = this.writableDatabase
+        val c = db.rawQuery("SELECT pais FROM ciudades WHERE pais = ?", arg)
+        return c.moveToFirst()
+    }
+
     fun EliminarPais(pais: String): Int{
 
-        val arg = arrayOf(pais.toString())
+        val arg = arrayOf(pais)
 
         val db = this.writableDatabase
         val borradosP = db.delete("ciudades","pais = ?", arg)
@@ -68,7 +76,7 @@ class miSQLiteHelper(context: Context):SQLiteOpenHelper(context, "ciudades.db", 
 
     fun ActualizarDato(nombre: String, poblacion: Int){
 
-        val arg = arrayOf(nombre.toString())
+        val arg = arrayOf(nombre)
 
         val datos = ContentValues()
         datos.put("poblacion", poblacion)
@@ -76,5 +84,21 @@ class miSQLiteHelper(context: Context):SQLiteOpenHelper(context, "ciudades.db", 
         val db = this.writableDatabase
         db.update("ciudades", datos,"nombre = ?", arg )
         db.close()
+    }
+
+    fun devolverPaises(): Array<String> {
+        val db = this.writableDatabase
+        val c = db.rawQuery("SELECT pais FROM ciudades ORDER BY pais", null)
+        val paises : MutableList<String> = mutableListOf()
+        c.moveToFirst()
+        paises.add(c.getString(0))
+        var prev = c.getString(0)
+        while (c.moveToNext()) {
+            if (c.getString(0) != prev) {
+                paises.add(c.getString(0))
+                prev = c.getString(0)
+            }
+        }
+        return paises.toTypedArray()
     }
 }
